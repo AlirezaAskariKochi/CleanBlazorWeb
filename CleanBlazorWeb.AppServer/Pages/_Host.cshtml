@@ -1,0 +1,244 @@
+﻿@page "/"
+@namespace CleanBlazorWeb.AppServer.AppServer.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using CleanBlazorWeb.AppServer.Components
+@using Microsoft.AspNetCore.Localization
+@using System.Globalization
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlazorApp</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Assets/fonts/fontawesome5/all.css" />
+    <link rel="stylesheet" href="css/vue-tel-input.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <script src="_content/Telerik.UI.for.Blazor/js/telerik-blazor.js" defer></script>
+    <link rel="stylesheet" href="css/persianDatepicker-default.css" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link id="theme" href="css/all.css" rel="stylesheet" />
+    <link href="~/intl-tel-input-master (1)/css/intltelinput.min.css" rel="stylesheet" />
+    @* <link id="theme" href="css/material-main.css" rel="stylesheet" /> *@
+    <link href="css/font-icons.css" rel="stylesheet" type="text/css" />
+    @* <link id="theme" rel="stylesheet" type="text/css" href="css/default-ocean-blue.css"> *@
+    <link href="~/md-bootstrap-datepicker/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet" />
+    
+    <style>
+
+        .header {
+            height: 70px;
+            background-image: none;
+            background-blend-mode: luminosity;
+            background-color: transparent;
+            backdrop-filter: blur(5px); /* Applies the blur effect to the background */
+            -webkit-backdrop-filter: blur(5px); /* Ensures compatibility with WebKit browsers */
+            opacity: 0.9; /* Optional: Adjust opacity for a more noticeable effect */
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+
+
+        .k-drawer-items {
+            margin-top: 30px;
+        }
+
+        .card-container {
+            box-shadow: none;
+        }
+
+        .spinner-that-is-always-spinning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .content {
+            position: relative;
+        }
+
+        .k-loader-segment {
+            background-color: #00b44ea8;
+        }
+
+        .k-input-solid {
+            --kendo-color-surface: #ffffff;
+            border-color: color-mix(in srgb, #babbbd) 44%, transparent);
+            color: var(--kendo-color-on-app-surface, #212121);
+            background-color: var(--kendo-color-surface, #f5f5f5);
+        }
+
+        .k-form .k-form-label {
+            margin-bottom: var(--kendo-spacing-1, 0px);
+        }
+
+        .k-form-item-label .k-required::after {
+            content: "*"; /* Ensures the asterisk is displayed */
+            color: red; /* Change this to your desired color */
+            font-weight: bold;
+        }
+
+        .k-input-solid:focus-within {
+            --kendo-color-border-alt: #039ae0;
+            border-color: var(--kendo-color-border-alt, rgba(0, 0, 0, 0.16));
+            box-shadow: none !important;
+            outline: none;
+        }
+
+        .k-picker-solid {
+            background-color: #ffffff;
+        }
+
+        .validation-message {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body class="k-body" dir="rtl">
+    @{
+        this.HttpContext.Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(CultureInfo.CurrentCulture, CultureInfo.CurrentUICulture))
+        );
+    }
+
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+
+
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <div>
+            <a href="" class="reload"><span class="k-icon k-i-reload"></span> Reload</a>
+        </div>
+    </div>
+
+    
+    <script src="js/themeChooser.js"></script>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/persianDatepicker.min.js"></script>
+    <script src="~/intl-tel-input-master (1)/js/intltelinput.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script src="~/md-bootstrap-datepicker/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="~/js/cropperinterop.js"></script>
+    @*  <script src="js/themeSelector.js"></script> 
+     <script>
+		window.themeChooser.init();
+	</script> *@  
+    <script src="_framework/blazor.server.js"></script>
+    <script>
+                    var ee = new Event("change");
+                     var datepicker;
+
+                 window.initializePersianDatePicker = (inputId, dotNetObject) => {
+            var inputElement = document.getElementById(inputId);
+            if (!inputElement || inputElement.dataset.initialized) return;
+
+            inputElement.dataset.initialized = "true"; // Prevent reinitialization
+
+            $(`#${inputId}`).MdPersianDateTimePicker({
+                    targetTextSelector: `#${inputId}1`,
+                    selectedDate: new Date('2001/3/21'),
+                    onDayClick: function (event) {
+                        let selectedDate = moment(event.selectedDate).locale('fa').format('YYYY/M/D');
+                        dotNetObject.invokeMethodAsync("ReceiveDate", selectedDate);
+                    }
+            });
+        };
+
+
+
+     
+
+                // Vanilla Javascript
+                 var ini;
+                  var input
+       function initialTelInput() {
+              input = document.querySelector("#telephone");
+              console.log({input})
+         ini=  window.intlTelInput(input,({
+           // options here
+             loadUtils: () => import("/intl-tel-input-master (1)/js/utils.js"),
+              initialCountry: "ir",
+               containerClass: "phone-input"
+         }));
+          // window.intlTelInputGlobals.loadUtils("build/js/utils.js");
+
+         window.ini = ini;
+          
+       }
+
+       function validateMobile() {
+             if (ini.isValidNumber()) {
+                 return true;
+             } 
+             return false;
+             
+       }
+
+       function hideMobileInput() {
+            // ini.destroy();
+              $(".phone-input").hide()
+            // $(".iti--allow-dropdown").hide();
+       }
+          function showMobileInput() {
+             $(".phone-input").show()
+
+             // $(".iti--allow-dropdown").hide();
+        }
+           function showEmailInput() {
+              $(".email-input").show()
+
+         }
+
+           function hideEmailInput() {
+               $(".email-input").hide()
+
+          }
+        
+
+        // function initialDatePicker() {
+        //     $(".mydatepicker").persianDatepicker({
+        //         formatDate: "YYYY/MM/DD",
+        //         onSelect: function () {
+        //             var eve = new Event("change");
+        //            var allItems = document.getElementsByClassName("mydatepicker");
+        //                for (let i = 0; i < allItems.length; i++) {
+        //                    allItems[i].dispatchEvent(eve);
+        //                }
+        //            }
+        //     });
+        // }
+    </script>
+</body>
+</html>
